@@ -378,11 +378,41 @@ Build an AI assistant that helps Phoebus developers by answering questions about
 **Skills Required:** Java/Python, Log Parsing, Pattern Recognition  
 
 **Description:**  
-Apply natural language processing and pattern recognition to alarm service logs to automatically identify recurring issues, extract failure patterns, and provide actionable insights for control system behvaiour
-
+Apply natural language processing and pattern recognition to alarm service logs to automatically identify recurring issues, extract failure patterns, and provide actionable insights for control system behavior.
 
 **Resources:**
 - ???
+
+**Assigned To:** _Available_
+
+---
+
+### DEVOPS-ANSIBLE-001: Phoebus Infrastructure Deployment
+
+**Repository:** New ansible-phoebus-collection  
+**Difficulty:** Intermediate  
+**Estimated Time:** 4-5 days  
+**Skills Required:** Ansible, Linux System Administration, Docker/Podman  
+
+**Description:**  
+Create a comprehensive Ansible collection with roles and playbooks for deploying the complete Phoebus tools and services technology stack. The collection should be generic and configurable enough for different facilities to adopt with minimal modifications.
+
+- Design modular Ansible roles for each service: Phoebus client, Olog, ChannelFinder, Save & Restore, Alarm Server, Alarm Logger, Archiver Appliance
+- Create roles for infrastructure dependencies: Elasticsearch, PostgreSQL, MongoDB, Kafka (KRaft mode)
+- Implement role variables with sensible defaults and facility-specific overrides (ports, paths, credentials, heap sizes)
+- Support multiple deployment targets: bare metal, containers (Docker/Podman), systemd services
+- Include SSL/TLS certificate configuration and secure credential management (Ansible Vault)
+- Add playbooks for common operations: deployment, updates, backups, health checks, scaling
+- Implement idempotent tasks with proper error handling and rollback capabilities
+- Create comprehensive documentation with example inventory files and variable configurations
+- Package as Ansible Galaxy collection for easy distribution and installation
+- Include molecule tests for role validation
+
+**Resources:**
+- Ansible best practices: https://docs.ansible.com/ansible/latest/tips_tricks/ansible_tips_tricks.html
+- Ansible Galaxy collections: https://docs.ansible.com/ansible/latest/collections_guide/index.html
+- Service repositories: https://github.com/ControlSystemStudio/
+- Molecule testing: https://ansible.readthedocs.io/projects/molecule/
 
 **Assigned To:** _Available_
 
@@ -403,6 +433,7 @@ Apply natural language processing and pattern recognition to alarm service logs 
 | AI-DISPLAY-002 | LLM-Based Display Screen CI/CD Validator | | Not Started | |
 | AI-ASSIST-001 | LLM-Powered Phoebus Development Assistant | | Not Started | |
 | AI-LOG-001 | Intelligent Log Analysis for Alarm Services | | Not Started | |
+| DEVOPS-ANSIBLE-001 | Phoebus Infrastructure Deployment | | Not Started | |
 
 ---
 
