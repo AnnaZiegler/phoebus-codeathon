@@ -61,7 +61,7 @@ Enhance alarm logger and alarm configuration logger services to gracefully handl
 - Modify `AlarmMessageLogger`, `AlarmCmdLogger`, and `AlarmConfigLogger` to catch topic-not-found exceptions on startup and during runtime
 - Implement exponential backoff retry strategy (initial: 5s, max: 5min, backoff: 2x)
 - Add periodic topic existence checks using Kafka `AdminClient` to verify topic availability
-- Log clear messages about missing topics and retry attempts with countdown timers
+- Log messages about missing topics and retry attempts with countdown timers
 - When topics appear, automatically initialize streams and resume processing without requiring service restart
 - Ensure service remains running in degraded state during topic unavailability, providing health check endpoints that reflect the degraded status
 - Add configuration properties for retry intervals and max retry attempts
@@ -85,20 +85,14 @@ Enhance alarm logger and alarm configuration logger services to gracefully handl
 **Skills Required:** Java, Spring Boot, REST API Design, Kafka  
 
 **Description:**  
-Create a REST API for the alarm configuration service that exposes read-only access to the current alarm tree configuration. This allows external tools, dashboards, and scripts to query alarm hierarchy and PV configurations without connecting directly to Kafka.
+Create a REST API for the alarm configuration service that exposes read-only access to the current alarm tree configuration.
 
 - Add REST controller to alarm-config-logger or create new alarm-config-service module
 - Implement GET endpoints:
   - `/api/config/{root}` - Get entire alarm tree for configuration root
-  - `/api/config/{root}/node/{path}` - Get specific node configuration
-  - `/api/config/{root}/pv/{path}` - Get PV alarm configuration with guidance, displays, commands
-  - `/api/config/{root}/search?query={term}` - Search for PVs or nodes
-- Return JSON representation of `AlarmClientNode` and `AlarmTreeLeaf` objects
-- Support path traversal (e.g., `/Accelerator/Vacuum/Sector01`)
-- Include alarm state severity in responses (read from state topic)
+- Return the complete alarm config as xml (or json)
 - Add OpenAPI/Swagger documentation
 - Implement proper HTTP status codes (404 for missing nodes)
-- Add simple authentication/authorization checks
 
 **Resources:**
 - `services/alarm-config-logger/src/main/java/org/phoebus/alarm/logging/AlarmConfigLogger.java`
@@ -110,7 +104,7 @@ Create a REST API for the alarm configuration service that exposes read-only acc
 
 ---
 
-### ALARM-VT-001: Virtual Threads Integration Assessment
+### PHOEBUS-VT-001: Virtual Threads Integration Assessment
 
 **Repository:** https://github.com/ControlSystemStudio/phoebus  
 **Difficulty:** Advanced  
@@ -118,25 +112,24 @@ Create a REST API for the alarm configuration service that exposes read-only acc
 **Skills Required:** Java 21, Concurrency, Performance Analysis, Virtual Threads  
 
 **Description:**  
-Identify and prototype Virtual Threads (Project Loom) integration opportunities in alarm services. Analyze current threading model, identify blocking operations, and create proof-of-concept implementations showing performance improvements with virtual threads.
+Identify and prototype Virtual Threads (Project Loom) integration opportunities across Phoebus services and tools. Analyze current threading model, identify blocking operations, and create proof-of-concept implementations showing performance improvements with virtual threads.
 
-- Document current threading model in alarm-server, alarm-logger, alarm-config-logger
-- Identify blocking operations: Kafka I/O, Elasticsearch writes, Git operations, PV connections
+- Document current threading model in alarm-server, alarm-logger, alarm-config-logger, save-and-restore, scan-server
+- Identify blocking operations: Kafka I/O, Elasticsearch writes, Git operations, PV connections, database queries
 - Create branch with Virtual Thread executors for:
   - Elasticsearch bulk write operations in `AlarmMessageLogger`
   - Git commit operations in `AlarmConfigLogger`
   - PV connection handling in `AlarmServer` (ServerModel)
-- Benchmark throughput: messages/second with platform threads vs virtual threads
-- Test with realistic load: 10k+ PVs, 100+ alarms/second
+  - Database operations in save-and-restore service
+  - Scan engine PV processing
+- Test with realistic load: 10k+ PVs, 100+ alarms/second, concurrent save-and-restore operations
 - Document migration strategy: code changes, JVM requirements, configuration
-- Identify potential issues: pinned threads, synchronized blocks, native calls
-- Measure memory footprint changes
-- Create technical report with recommendations
 
 **Resources:**
 - `services/alarm-server/src/main/java/org/phoebus/applications/alarm/server/ServerModel.java`
 - `services/alarm-logger/src/main/java/org/phoebus/alarm/logging/AlarmMessageLogger.java`
 - `services/alarm-config-logger/src/main/java/org/phoebus/alarm/logging/AlarmConfigLogger.java`
+- `services/save-and-restore/src/main/java/org/phoebus/service/saveandrestore/`
 - JEP 444: Virtual Threads - https://openjdk.org/jeps/444
 
 **Assigned To:** _Available_
@@ -150,7 +143,7 @@ Identify and prototype Virtual Threads (Project Loom) integration opportunities 
 | ALARM-KAFKA-001 | Enhanced Kafka Streams Error Handling | | Not Started | |
 | ALARM-KAFKA-002 | Resilient Topic Handling with Retry Logic | | Not Started | |
 | ALARM-REST-001 | Alarm Configuration REST API | | Not Started | |
-| ALARM-VT-001 | Virtual Threads Integration Assessment | | Not Started | |
+| PHOEBUS-VT-001 | Virtual Threads Integration Assessment | | Not Started | |
 
 ---
 
