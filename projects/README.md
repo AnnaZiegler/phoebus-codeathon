@@ -39,9 +39,6 @@ Implement robust error handling for Kafka Streams in alarm logger and alarm conf
 - Create unit tests with intentionally malformed Kafka messages and missing topic scenarios
 
 **Resources:**
-- `services/alarm-logger/src/main/java/org/phoebus/alarm/logging/AlarmMessageLogger.java`
-- `services/alarm-logger/src/main/java/org/phoebus/alarm/logging/AlarmCmdLogger.java`
-- `services/alarm-config-logger/src/main/java/org/phoebus/alarm/logging/AlarmConfigLogger.java`
 - Kafka Streams error handling: https://kafka.apache.org/41/documentation/streams/developer-guide/config-streams.html#default-deserialization-exception-handler
 
 **Assigned To:** _Available_
@@ -67,12 +64,6 @@ Enhance alarm logger and alarm configuration logger services to gracefully handl
 - Add configuration properties for retry intervals and max retry attempts
 - Services should recover automatically without restart when topics are recreated, reconnecting to Kafka and resuming message processing
 
-**Resources:**
-- `services/alarm-logger/src/main/java/org/phoebus/alarm/logging/AlarmLoggingService.java`
-- `services/alarm-config-logger/src/main/java/org/phoebus/alarm/logging/AlarmConfigLoggingService.java`
-- `app/alarm/model/src/main/java/org/phoebus/applications/alarm/client/KafkaHelper.java`
-- Example: `services/alarm-server/src/main/java/org/phoebus/applications/alarm/server/CreateTopics.java`
-
 **Assigned To:** _Available_
 
 ---
@@ -93,12 +84,6 @@ Create a REST API for the alarm configuration service that exposes read-only acc
 - Return the complete alarm config as xml (or json)
 - Add OpenAPI/Swagger documentation
 - Implement proper HTTP status codes (404 for missing nodes)
-
-**Resources:**
-- `services/alarm-config-logger/src/main/java/org/phoebus/alarm/logging/AlarmConfigLogger.java`
-- `app/alarm/model/src/main/java/org/phoebus/applications/alarm/client/AlarmClient.java`
-- `services/alarm-logger/src/main/java/org/phoebus/alarm/logging/rest/SearchController.java` (existing REST example)
-- `app/alarm/model/src/main/java/org/phoebus/applications/alarm/model/json/JsonModelWriter.java`
 
 **Assigned To:** _Available_
 
@@ -127,10 +112,7 @@ Enhance the Phoebus alarm tree to display high and low alarm limits (HIHI, HIGH,
 - Reference ISIS implementation for listener pattern approach
 
 **Resources:**
-- `app/alarm/ui/src/main/java/org/phoebus/applications/alarm/ui/tree/AlarmTreeItem.java`
-- `app/alarm/ui/src/main/java/org/phoebus/applications/alarm/ui/tree/AlarmTreeView.java`
 - ISIS Computing Group implementation: https://github.com/ISISComputingGroup/cs-studio/blob/master/applications/alarm/alarm-plugins/org.csstudio.alarm.beast/src/org/csstudio/alarm/beast/client/AlarmTreePV.java
-- `core/pv/src/main/java/org/phoebus/pv/` - PV access layer
 
 **Assigned To:** _Available_
 
@@ -156,8 +138,6 @@ Refactor the alarm server's Kafka topic creation and configuration logic into a 
 - Update `AlarmServerMain` and `AggregateTopics` to use the new service
 
 **Resources:**
-- `services/alarm-server/src/main/java/org/phoebus/applications/alarm/server/AlarmServerMain.java`
-- `services/alarm-server/src/main/java/org/phoebus/applications/alarm/server/AggregateTopics.java`
 - Kafka AdminClient API: https://kafka.apache.org/41/javadoc/org/apache/kafka/clients/admin/AdminClient.html
 - Topic configuration: https://kafka.apache.org/41/documentation.html#topicconfigs
 
@@ -186,13 +166,6 @@ Identify and prototype Virtual Threads (Project Loom) integration opportunities 
 - Test with realistic load: 10k+ PVs, 100+ alarms/second, concurrent save-and-restore operations
 - Document migration strategy: code changes, JVM requirements, configuration
 
-**Resources:**
-- `services/alarm-server/src/main/java/org/phoebus/applications/alarm/server/ServerModel.java`
-- `services/alarm-logger/src/main/java/org/phoebus/alarm/logging/AlarmMessageLogger.java`
-- `services/alarm-config-logger/src/main/java/org/phoebus/alarm/logging/AlarmConfigLogger.java`
-- `services/save-and-restore/src/main/java/org/phoebus/service/saveandrestore/`
-- JEP 444: Virtual Threads - https://openjdk.org/jeps/444
-
 **Assigned To:** _Available_
 
 ---
@@ -218,8 +191,6 @@ Fix inconsistent behavior in the TimeRangePopover's relative time selection cont
 
 **Resources:**
 - GitHub Issue: https://github.com/ControlSystemStudio/phoebus/issues/3358
-- `core/ui/src/main/java/org/phoebus/ui/time/TimeRelativeIntervalPane.java`
-- `core/ui/src/main/java/org/phoebus/ui/time/TimeRangePopover.java`
 
 **Assigned To:** _Available_
 
@@ -238,15 +209,33 @@ Add UI functionality to manually add, remove, and modify archive data sources in
   - "Add Archive Data Source" - add from configured preferences
   - "Remove Archive Data Source" - remove selected source
   - "Refresh Data Source" - retry connection to disabled source
-- Add functionality to manually add archive data source using the ones configured in the preferences
-- Add functionality to remove archive data sources from the trace
-- Show data source health status in archive view (active, disabled, error with timestamp)
+- Show data source health status in archive view (active, disabled, error with timestamp)??
 - Persist manual data source changes in Data Browser configuration files
-- Update Data Browser to respect manually added sources even if initially unreachable
+- Update Data Browser to respect manually added sources even if initially unreachable??
 
 **Resources:**
-- `app/databrowser/src/main/java/org/csstudio/trends/databrowser3/model/ArchiveDataSource.java`
 - Legacy CS-Studio archive preferences for reference
+
+**Assigned To:** _Available_
+
+---
+
+### PHOEBUS-UI-003: Fix PV Resource Leak in WidgetRuntime
+
+**Repository:** https://github.com/ControlSystemStudio/phoebus  
+**Difficulty:** Beginner  
+**Estimated Time:** 1 day  
+**Skills Required:** Java, PV Access, Resource Management  
+
+**Description:**  
+Fix PV resource leak in Display Builder runtime when using non-standard default PV types (loc://, muscade://, tango://). PVs are not properly released when displays close, causing memory leaks.
+
+- Fix PV release mechanism in WidgetRuntime to handle PV name prefix differences
+- Ensure PVPool correctly tracks and releases PVs regardless of default datasource configuration
+- Test with displays using loc://, ca://, pva://, and custom datasources
+
+**Resources:**
+- GitHub PR: https://github.com/ControlSystemStudio/phoebus/pull/3412
 
 **Assigned To:** _Available_
 
@@ -272,10 +261,6 @@ Standardize Spring Boot Actuator health endpoints across all Phoebus middle laye
 - Configure health endpoint exposure in `application.properties` consistently across all services
 
 **Resources:**
-- `services/alarm-logger/src/main/java/org/phoebus/alarm/logging/`
-- `services/save-and-restore/src/main/java/org/phoebus/service/saveandrestore/`
-- Phoebus-Olog: https://github.com/Olog/phoebus-olog
-- ChannelFinder: https://github.com/ChannelFinder/ChannelFinderService
 - Spring Boot Actuator Health: https://docs.spring.io/spring-boot/reference/actuator/endpoints.html#actuator.endpoints.health
 
 **Assigned To:** _Available_
@@ -351,11 +336,56 @@ Implement consistent REST API versioning across all Phoebus middle layer service
 **Resources:**
 - REST API Versioning Best Practices: https://restfulapi.net/versioning/
 - Spring Boot REST versioning: https://www.baeldung.com/rest-versioning
-- OpenAPI versioning: https://swagger.io/docs/specification/api-general-info/
-- Existing service REST endpoints:
-  - Olog: https://github.com/Olog/phoebus-olog
-  - ChannelFinder: https://github.com/ChannelFinder/ChannelFinderService
-  - Alarm Logger: `services/alarm-logger/src/main/java/org/phoebus/alarm/logging/rest/`
+
+**Assigned To:** _Available_
+
+---
+
+### SERVICES-WEBSOCKET-001: WebSocket Support as a alternative to Polling Phoebus Services
+
+**Repository:** https://github.com/ControlSystemStudio/phoebus  
+**Difficulty:** Intermediate  
+**Estimated Time:** 3-4 days  
+**Skills Required:** Java, WebSocket, JavaFX, REST APIs  
+
+**Description:**  
+Add WebSocket support to Phoebus clients for real-time updates from middle layer services, replacing polling-based architecture. Implement intelligent fallback to polling when connecting to older services without WebSocket support, ensuring backward compatibility.
+
+- Implement WebSocket-based updates for improved performance:
+  - Olog logbook updates (server already supports WebSocket)
+  - Alarm Logger search results updates
+  - Save & Restore service updates
+  - Replace periodic polling with push-based real-time updates
+- Add service capability detection:
+  - Attempt WebSocket connection first
+  - Auto-detect WebSocket availability (HTTP headers, discovery endpoint, connection attempt)
+  - Fall back to polling if service doesn't support WebSocket yet
+- Ensure backward compatibility:
+  - Clients automatically use WebSocket when available
+  - Clients work with older polling-only services
+
+**Resources:**
+- Olog WebSocket implementation: https://github.com/Olog/phoebus-olog
+
+**Assigned To:** _Available_
+
+---
+
+### PHOEBUS-LINT-001: Display Builder Screen Linter
+
+**Repository:** New phoebus-display-linter or add to Phoebus build tools  
+**Difficulty:** Beginner  
+**Estimated Time:** 2-3 days  
+**Skills Required:** Python/Java, XML parsing, Display Builder format knowledge  
+
+**Description:**  
+Create a command-line linter for Display Builder (.bob) and OPI screens to detect common issues and enforce facility-specific conventions.
+
+- Implement core validation: XML schema, required properties, valid values, PV name format, widget overlaps
+- Design flexible configuration system (YAML/JSON) for facility-specific rules: color palettes, naming conventions, fonts, widget limits, embedding depth
+- Support both .bob and .opi formats
+- Generate CI/CD-friendly reports (console, JSON output, non-zero exit codes)
+- Key challenge: Make conventions easily configurable per facility without code changes
 
 **Assigned To:** _Available_
 
@@ -389,13 +419,6 @@ Explore using Large Language Models (LLMs) to generate Phoebus Display Builder s
   - Simple screens (5-10 widgets)
   - Complex screens (100+ widgets, embedded displays, macros)
 - Document findings: success rates, limitations, best practices, cost analysis
-
-**Resources:**
-- Display Builder format: `app/display/model/src/main/resources/` (XSD schema)
-- Example displays: `app/display/model/src/main/resources/examples/`
-- Widget implementations: `app/display/representation-javafx/src/main/java/org/csstudio/display/builder/representation/javafx/widgets/`
-- LLM APIs: OpenAI, Anthropic Claude, Ollama (local), Hugging Face
-- Legacy conversion examples: EDM, MEDM, BOY formats for training data
 
 **Assigned To:** _Available_
 
@@ -431,14 +454,6 @@ Develop an LLM-powered automated validator for Display Builder screens (.bob fil
   - JSON output for programmatic use
   - Metrics dashboard showing violation trends
 - Support multiple platforms: GitHub Actions, GitLab CI/CD, Jenkins, pre-commit hooks
-
-**Resources:**
-- GitHub Actions: https://docs.github.com/en/actions
-- GitHub API for PR comments: https://docs.github.com/en/rest/pulls/comments
-- Display Builder XSD: `app/display/model/src/main/resources/`
-- Python XML parsing: `lxml`, `xmlschema`
-- LLM APIs: OpenAI (with structured outputs), Claude (with tool use), local models
-- CI/CD examples: Super-Linter, actionlint, vale for similar validation patterns
 
 **Assigned To:** _Available_
 
@@ -476,12 +491,6 @@ Build an AI assistant that helps Phoebus developers by answering questions about
   - Compare to manual documentation search time
   - Collect user feedback on usefulness
 
-**Resources:**
-- RAG frameworks: LangChain, LlamaIndex, Haystack
-- Vector databases: ChromaDB, FAISS, Weaviate
-- Phoebus documentation: https://github.com/ControlSystemStudio/phoebus/tree/master/docs
-- Code embedding models: OpenAI `text-embedding-3`, `code-bison`, CodeBERT
-
 **Assigned To:** _Available_
 
 ---
@@ -495,9 +504,6 @@ Build an AI assistant that helps Phoebus developers by answering questions about
 
 **Description:**  
 Apply natural language processing and pattern recognition to alarm service logs to automatically identify recurring issues, extract failure patterns, and provide actionable insights for control system behavior.
-
-**Resources:**
-- ???
 
 **Assigned To:** _Available_
 
@@ -563,7 +569,6 @@ Create a training VM for Phoebus services and tools that complements the existin
 - EPICS training-vm: https://github.com/epics-training/training-vm
 - Ansible roles from DEVOPS-ANSIBLE-001
 - Vagrant documentation: https://www.vagrantup.com/docs
-- Service repositories: https://github.com/ControlSystemStudio/
 
 **Assigned To:** _Available_
 
@@ -581,9 +586,12 @@ Create a training VM for Phoebus services and tools that complements the existin
 | PHOEBUS-VT-001 | Virtual Threads Integration Assessment | | Not Started | |
 | PHOEBUS-UI-001 | Fix TimeRangePopover Relative Time Selection | | Not Started | |
 | PHOEBUS-UI-002 | Data Browser Archive Data Source Management | | Not Started | |
+| PHOEBUS-UI-003 | Fix PV Resource Leak in WidgetRuntime | | Not Started | |
+| PHOEBUS-LINT-001 | Display Builder Screen Linter | | Not Started | |
 | SERVICES-HEALTH-001 | Standardize Health Endpoint Implementation | | Not Started | |
 | SERVICES-SB4-001 | Spring Boot 4 Migration Planning | | Not Started | |
 | SERVICES-VERSIONING-001 | REST API Versioning Strategy | | Not Started | |
+| SERVICES-WEBSOCKET-001 | WebSocket Fallback Mechanism for Phoebus Clients | | Not Started | |
 | AI-DISPLAY-001 | LLM-Assisted Display Screen Generation | | Not Started | |
 | AI-DISPLAY-002 | LLM-Based Display Screen CI/CD Validator | | Not Started | |
 | AI-ASSIST-001 | LLM-Powered Phoebus Development Assistant | | Not Started | |
