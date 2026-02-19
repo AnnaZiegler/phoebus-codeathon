@@ -336,6 +336,32 @@ Documentation is a critical part of making Phoebus tools and services accessible
 
 ---
 
+### DOC-API-001-OLOG: Olog Service Documentation Improvements
+
+**Repository:** https://github.com/Olog/phoebus-olog  
+**Difficulty:** Beginner  
+**Estimated Time:** 2-3 days  
+**Skills Required:** Sphinx/reStructuredText, Technical Writing, REST API Documentation  
+
+**Tasks:**
+- [ ] Add table of contents and restructure into logical sections (Getting Started, User Guide, API Reference, Administration, Integration)
+- [ ] Add comprehensive code examples for all REST endpoints (curl, Python, Java) following ChannelFinder documentation pattern
+- [ ] Document configuration options, environment variables, and authentication setup clearly
+- [ ] Include Docker/Docker Compose setup tutorials and architecture diagrams
+- [ ] Add screenshots, best practices guide, and troubleshooting section
+
+**Deliverables:**
+- Improved ReadTheDocs site structure at https://olog.readthedocs.io
+- Complete REST API examples
+- Configuration and deployment guides
+- Architecture documentation
+
+**Reference Model:** https://channelfinder.readthedocs.io/en/latest/
+
+**Assigned To:** _Available_
+
+---
+
 ### DOC-API-002: Java API Documentation (JavaDoc)
 
 **Repository:** All Java repositories  
@@ -593,6 +619,7 @@ Documentation is a critical part of making Phoebus tools and services accessible
 | DOC-INSTALL-002 | Docker Deployment | | Not Started | High |
 | DOC-INSTALL-003 | Service Configuration | | Not Started | High |
 | DOC-API-001 | REST API Docs | | Not Started | High |
+| DOC-API-001-OLOG | Olog Documentation Improvements | | Not Started | High |
 | DOC-API-002 | JavaDoc | | Not Started | Medium |
 | DOC-TUT-001 | Getting Started | | Not Started | High |
 | DOC-TUT-002 | Display Builder Cookbook | | Not Started | High |

@@ -65,7 +65,7 @@ This document outlines the technical discussion topics for the Phoebus Tools and
 - [ ] Virtual Threads Support: Integration with Project Loom for improved concurrency
 - [ ] Native Image: GraalVM native compilation for faster startup and lower memory footprint
 - [ ] Observability: OpenTelemetry integration, metrics, distributed tracing across services
-- [ ] Problem Details (RFC 9457): Standardized error responses across all REST APIs
+- [ ] Problem Details: Standardized error responses across all REST APIs
 - [ ] HTTP Interface Clients: Declarative HTTP clients replacing RestTemplate/WebClient
 - [ ] Docker Compose Support: Simplified local development and testing environments
 

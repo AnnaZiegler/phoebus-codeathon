@@ -104,6 +104,38 @@ Create a REST API for the alarm configuration service that exposes read-only acc
 
 ---
 
+### ALARM-UI-001: Display High/Low Alarm Limits in Alarm Tree Tooltip
+
+**Repository:** https://github.com/ControlSystemStudio/phoebus  
+**Difficulty:** Intermediate  
+**Estimated Time:** 2-3 days  
+**Skills Required:** JavaFX, EPICS PVA/PVAccess, Alarm System Architecture  
+
+**Description:**  
+Enhance the Phoebus alarm tree to display high and low alarm limits (HIHI, HIGH, LOW, LOLO) in the PV tooltip. This metadata is already available through tools like Probe but would be valuable context directly in the alarm tree view. The challenge is efficiently handling limit updates without reconnecting or making excessive PV reads.
+
+- Add alarm limit fields to alarm tree tooltip display: HIHI, HIGH, LOW, LOLO thresholds
+- Implement efficient limit value retrieval:
+  - Read alarm limit fields during initial PV connection establishment
+  - Use PV metadata subscription to detect limit changes without reconnecting
+- Update `AlarmTreeItem` or equivalent model to cache limit values
+- Handle cases where limits are not defined (NaN, or not applicable for non-numeric PVs)
+- Consider performance implications: avoid reading limits for every PV on every tooltip hover
+- Implement lazy loading: fetch limits on first tooltip request, cache for subsequent hovers
+- Display limits with appropriate formatting and units in tooltip
+- Add user preference to enable/disable limit display in tooltips
+- Reference ISIS implementation for listener pattern approach
+
+**Resources:**
+- `app/alarm/ui/src/main/java/org/phoebus/applications/alarm/ui/tree/AlarmTreeItem.java`
+- `app/alarm/ui/src/main/java/org/phoebus/applications/alarm/ui/tree/AlarmTreeView.java`
+- ISIS Computing Group implementation: https://github.com/ISISComputingGroup/cs-studio/blob/master/applications/alarm/alarm-plugins/org.csstudio.alarm.beast/src/org/csstudio/alarm/beast/client/AlarmTreePV.java
+- `core/pv/src/main/java/org/phoebus/pv/` - PV access layer
+
+**Assigned To:** _Available_
+
+---
+
 ### ALARM-TOPICS-001: Centralized Kafka Topic Management Service
 
 **Repository:** https://github.com/ControlSystemStudio/phoebus  
@@ -160,6 +192,34 @@ Identify and prototype Virtual Threads (Project Loom) integration opportunities 
 - `services/alarm-config-logger/src/main/java/org/phoebus/alarm/logging/AlarmConfigLogger.java`
 - `services/save-and-restore/src/main/java/org/phoebus/service/saveandrestore/`
 - JEP 444: Virtual Threads - https://openjdk.org/jeps/444
+
+**Assigned To:** _Available_
+
+---
+
+### PHOEBUS-UI-001: Fix TimeRangePopover Relative Time Selection
+
+**Repository:** https://github.com/ControlSystemStudio/phoebus  
+**Difficulty:** Beginner  
+**Estimated Time:** 1-2 days  
+**Skills Required:** JavaFX, UI/UX, Time Handling  
+
+**Description:**  
+Fix inconsistent behavior in the TimeRangePopover's relative time selection controls, specifically in the TimeRelativeIntervalPane. The current implementation has confusing increment/decrement behavior, especially with months and edge cases when values reach zero.
+
+- Analyze current behavior in `TimeRelativeIntervalPane` for relative time field adjustments
+- Fix decrement behavior: when days field is 0 and decremented, it goes to 31 days (should handle more predictably)
+- Fix increment behavior: incrementing days from 31 goes to 32 (months conversion logic is broken)
+- Consider simplifying by removing "months" field entirely (months are inconsistent time units: 28-31 days)
+- Implement consistent rollover behavior for time unit boundaries
+- Add validation to prevent invalid intermediate states
+- Add unit tests for edge cases and boundary conditions
+- Test with Data Browser and other tools that use TimeRangePopover
+
+**Resources:**
+- GitHub Issue: https://github.com/ControlSystemStudio/phoebus/issues/3358
+- `core/ui/src/main/java/org/phoebus/ui/time/TimeRelativeIntervalPane.java`
+- `core/ui/src/main/java/org/phoebus/ui/time/TimeRangePopover.java`
 
 **Assigned To:** _Available_
 
@@ -454,8 +514,10 @@ Create a comprehensive Ansible collection with roles and playbooks for deploying
 | ALARM-KAFKA-001 | Enhanced Kafka Streams Error Handling | | Not Started | |
 | ALARM-KAFKA-002 | Resilient Topic Handling with Retry Logic | | Not Started | |
 | ALARM-REST-001 | Alarm Configuration REST API | | Not Started | |
+| ALARM-UI-001 | Display High/Low Alarm Limits in Alarm Tree Tooltip | | Not Started | |
 | ALARM-TOPICS-001 | Centralized Kafka Topic Management Service | | Not Started | |
 | PHOEBUS-VT-001 | Virtual Threads Integration Assessment | | Not Started | |
+| PHOEBUS-UI-001 | Fix TimeRangePopover Relative Time Selection | | Not Started | |
 | SERVICES-HEALTH-001 | Standardize Health Endpoint Implementation | | Not Started | |
 | SERVICES-SB4-001 | Spring Boot 4 Migration Planning | | Not Started | |
 | SERVICES-VERSIONING-001 | REST API Versioning Strategy | | Not Started | |
