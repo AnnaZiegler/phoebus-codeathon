@@ -225,6 +225,33 @@ Fix inconsistent behavior in the TimeRangePopover's relative time selection cont
 
 ---
 
+### PHOEBUS-UI-002: Data Browser Archive Data Source Management
+
+**Repository:** https://github.com/ControlSystemStudio/phoebus  
+**Difficulty:** Intermediate  
+**Estimated Time:** 2-3 days  
+**Skills Required:** JavaFX, Data Browser Architecture, Archive Appliance Integration  
+
+**Description:**  
+Add UI functionality to manually add, remove, and modify archive data sources in the Data Browser. Currently, the Data Browser automatically removes inaccessible data sources (good for preventing unnecessary calls), but there's no way to re-add them after an archiver recovers from a temporary outage. This feature existed in legacy CS-Studio and is needed for operational flexibility.
+- Add context menu actions in Properties -> Traces -> Archive view:
+  - "Add Archive Data Source" - add from configured preferences
+  - "Remove Archive Data Source" - remove selected source
+  - "Refresh Data Source" - retry connection to disabled source
+- Add functionality to manually add archive data source using the ones configured in the preferences
+- Add functionality to remove archive data sources from the trace
+- Show data source health status in archive view (active, disabled, error with timestamp)
+- Persist manual data source changes in Data Browser configuration files
+- Update Data Browser to respect manually added sources even if initially unreachable
+
+**Resources:**
+- `app/databrowser/src/main/java/org/csstudio/trends/databrowser3/model/ArchiveDataSource.java`
+- Legacy CS-Studio archive preferences for reference
+
+**Assigned To:** _Available_
+
+---
+
 ### SERVICES-HEALTH-001: Standardize Health Endpoint Implementation
 
 **Repository:** Multiple (Olog, ChannelFinder, Save & Restore, Alarm Services)  
@@ -553,6 +580,7 @@ Create a training VM for Phoebus services and tools that complements the existin
 | ALARM-TOPICS-001 | Centralized Kafka Topic Management Service | | Not Started | |
 | PHOEBUS-VT-001 | Virtual Threads Integration Assessment | | Not Started | |
 | PHOEBUS-UI-001 | Fix TimeRangePopover Relative Time Selection | | Not Started | |
+| PHOEBUS-UI-002 | Data Browser Archive Data Source Management | | Not Started | |
 | SERVICES-HEALTH-001 | Standardize Health Endpoint Implementation | | Not Started | |
 | SERVICES-SB4-001 | Spring Boot 4 Migration Planning | | Not Started | |
 | SERVICES-VERSIONING-001 | REST API Versioning Strategy | | Not Started | |
