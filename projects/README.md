@@ -28,6 +28,9 @@ This directory contains the list of development projects for the Phoebus tools a
 | [SERVICES-SB4-001](#services-sb4-001-spring-boot-4-migration-planning) | Spring Boot 4 Migration Planning | Advanced | | Not Started |
 | [SERVICES-VERSIONING-001](#services-versioning-001-rest-api-versioning-strategy) | REST API Versioning Strategy | Intermediate | | Not Started |
 | [SERVICES-WEBSOCKET-001](#services-websocket-001-websocket-support-as-a-alternative-to-polling-phoebus-services) | WebSocket Support as Alternative to Polling | Intermediate | | Not Started |
+| [SERVICES-CFNS-001](#services-cfns-001-multi-threaded-channelfinder-nameserver-with-broadcast-fallback) | Multi-threaded ChannelFinder Nameserver with Broadcast Fallback | Intermediate | | Not Started |
+| [SERVICES-RECSYNC-001](#services-recsync-001-java-recsync-implementation) | Java RecSync Implementation | Intermediate | | Not Started |
+| [SERVICES-RECSYNC-002](#services-recsync-002-convert-recceiver-to-pixi-project) | Convert RecCeiver to Pixi Project | Beginner | | Not Started |
 | **AI/ML Projects** |||||
 | [AI-DISPLAY-001](#ai-display-001-llm-assisted-display-screen-generation) | LLM-Assisted Display Screen Generation | Advanced | | Not Started |
 | [AI-DISPLAY-002](#ai-display-002-llm-based-display-screen-cicd-validator) | LLM-Based Display Screen CI/CD Validator | Intermediate | | Not Started |
@@ -426,6 +429,91 @@ Add WebSocket support to Phoebus clients for real-time updates from middle layer
 
 **Resources:**
 - Olog WebSocket implementation: https://github.com/Olog/phoebus-olog
+
+**Assigned To:** _Available_
+
+---
+
+### SERVICES-CFNS-001: Multi-threaded ChannelFinder Nameserver with Broadcast Fallback
+
+**Repository:** https://github.com/ChannelFinder/cfNameserver  
+**Difficulty:** Intermediate  
+**Skills Required:** Java, Multi-threading, EPICS PVAccess, Network Programming  
+
+**Description:**  
+Enhance the ChannelFinder Nameserver (currently PVAccess-only) to support concurrent PV name resolution requests using multi-threading, and add intelligent fallback to broadcast name requests when PVs are not found in ChannelFinder database.
+
+- Implement multi-threaded request handling for concurrent PV name lookups
+- Add thread pool management with configurable pool size
+- Implement PVAccess broadcast fallback mechanism:
+  - First attempt: Query ChannelFinder service for PV information
+  - If PV not found: Fall back to PVAccess broadcast name resolution
+  - Cache broadcast results temporarily to reduce network overhead
+- Add configuration options for:
+  - Thread pool size
+  - Fallback enable/disable toggle
+  - Cache timeout for broadcast results
+  - ChannelFinder query timeout
+- Ensure thread safety for shared resources and caching
+- Add performance metrics and logging for monitoring
+- Add Channel Access protocol support alongside existing PVAccess (nameserver currently only supports PVAccess)
+
+**Resources:**
+- cfNameserver repository: https://github.com/ChannelFinder/cfNameserver
+
+**Assigned To:** _Available_
+
+---
+
+### SERVICES-RECSYNC-001: Java RecSync Implementation
+
+**Repository:** https://github.com/ChannelFinder/recsync  
+**Difficulty:** Intermediate  
+**Skills Required:** Java, EPICS IOC Communication, Network Programming  
+
+**Description:**  
+Develop a Java implementation of RecCeiver (recsync) for more robust and reliable IOC record monitoring and ChannelFinder synchronization.
+
+- Implement Java-based IOC record receiver matching RecCeiver functionality
+- Support modular architecture.
+- Implement health monitoring and status reporting endpoints
+- Add comprehensive logging for troubleshooting
+- Ensure compatibility with existing ChannelFinder deployments
+
+**Resources:**
+- recsync repository: https://github.com/ChannelFinder/recsync
+- ChannelFinder Service: https://github.com/ChannelFinder/ChannelFinderService
+
+**Assigned To:** _Available_
+
+---
+
+### SERVICES-RECSYNC-002: Convert RecCeiver to Pixi Project
+
+**Repository:** https://github.com/ChannelFinder/recsync  
+**Difficulty:** Beginner  
+**Skills Required:** Python, Pixi, Package Management  
+
+**Description:**  
+Modernize the RecCeiver Python server by converting it from traditional setuptools/pip packaging to Pixi for improved cross-platform dependency management and reproducible builds.
+
+- Convert existing `pyproject.toml` to Pixi format or create `pixi.toml`
+- Generate `pixi.lock` for reproducible dependency resolution
+- Define development and production environments in Pixi configuration
+- Create Pixi tasks for common operations:
+  - `pixi run test` - Run pytest suite
+  - `pixi run lint` - Run ruff linting
+  - `pixi run format` - Run ruff formatting
+  - `pixi run server` - Start RecCeiver server
+- Update documentation with Pixi installation and usage instructions
+- Test cross-platform compatibility (Windows, macOS, Linux)
+- Maintain backward compatibility with existing deployment methods
+- Update Docker configuration if needed to work with Pixi
+
+**Resources:**
+- RecCeiver server: https://github.com/ChannelFinder/recsync/tree/master/server
+- Pixi documentation: https://pixi.sh/
+- Current pyproject.toml: https://github.com/ChannelFinder/recsync/blob/master/server/pyproject.toml
 
 **Assigned To:** _Available_
 
