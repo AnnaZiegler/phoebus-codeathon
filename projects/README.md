@@ -23,6 +23,7 @@ This directory contains the list of development projects for the Phoebus tools a
 | [PHOEBUS-UI-003](#phoebus-ui-003-fix-pv-resource-leak-in-widgetruntime) | Fix PV Resource Leak in WidgetRuntime | Beginner | | Not Started |
 | [PHOEBUS-UI-004](#phoebus-ui-004-interactive-graph-widget-for-xyplot) | Interactive Graph Widget for XYPlot | Advanced | | Not Started |
 | [PHOEBUS-UI-005](#phoebus-ui-005-default-email-address-preferences) | Default Email Address Preferences | Beginner | | Not Started |
+| [PHOEBUS-UI-006](#phoebus-ui-006-remove-hardcoded-colors-for-css-consistency) | Remove Hardcoded Colors for Consistency | Intermediate | | Not Started |
 | [PHOEBUS-LINT-001](#phoebus-lint-001-display-builder-screen-linter) | Display Builder Screen Linter | Beginner | | Not Started |
 | **Middle Layer Services** |||||
 | [SERVICES-HEALTH-001](#services-health-001-standardize-health-endpoint-implementation) | Standardize Health Endpoint Implementation | Intermediate | | Not Started |
@@ -325,6 +326,34 @@ Add preferences for default email addresses in the Phoebus send email dialog. Cu
 
 **Resources:**
 - GitHub Issue: https://github.com/ControlSystemStudio/phoebus/issues/3589
+
+**Assigned To:** _Available_
+
+---
+
+### PHOEBUS-UI-006: Remove Hardcoded Colors for Consistency
+
+**Repository:** https://github.com/ControlSystemStudio/phoebus  
+**Difficulty:** Intermediate  
+**Skills Required:** JavaFX, Java, FXML  
+
+**Description:**  
+Refactor hardcoded color values throughout Phoebus to use a central ColorService. Improve code maintainability and consistency by centralizing color management.
+
+- Create or enhance central ColorService for managing application colors
+- Ensure consistent color management across all applications
+- Add documentation for ColorService usage patterns
+
+**Resources:**
+- WidgetColorService: `app/display/model/src/main/java/org/csstudio/display/builder/model/persist/WidgetColorService.java`
+- Annunciator hardcoded colors: `app/alarm/ui/src/main/java/org/phoebus/applications/alarm/ui/annunciator/AnnunciatorTable.java#L92`
+- Probe hardcoded colors: `app/probe/src/main/java/org/phoebus/applications/probe/view/ProbeController.java#L105`
+- Save & Restore FXML styles:
+  - `app/save-and-restore/app/src/main/resources/org/phoebus/applications/saveandrestore/ui/configuration/ConfigurationEditor.fxml#L11`
+  - `app/save-and-restore/app/src/main/resources/org/phoebus/applications/saveandrestore/ui/snapshot/SnapshotView.fxml#L37`
+- Logbook FXML styles: `app/logbook/olog/ui/src/main/resources/org/phoebus/logbook/olog/ui/LogEntryTableView.fxml#L43`
+- Queue Server FXML styles: `app/queue-server/src/main/resources/org/phoebus/applications/queueserver/view/ReStatusMonitor.fxml#L13`
+- NamedWidgetColors: `app/display/model/src/main/java/org/csstudio/display/builder/model/persist/NamedWidgetColors.java`
 
 **Assigned To:** _Available_
 
