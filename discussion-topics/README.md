@@ -121,6 +121,24 @@ This document outlines the technical discussion topics for the Phoebus Tools and
 #### 4.3 Community Engagement
 - [ ] ???
 
+#### 4.4 Documentation Strategy
+- [ ] **Documentation Structure by User Profile** ([#3558](https://github.com/ControlSystemStudio/phoebus/issues/3558))
+  - Reorganize docs by user type: Operator, Display Designer, Sysadmin, Contributor?
+  - Consider [Diátaxis](https://diataxis.fr/) framework (Tutorials, Guides, References, Explanations)
+  - Move CONTRIBUTING.md and ARCHITECTURE.md to repository root
+- [ ] **Multi-version Documentation** ([#3556](https://github.com/ControlSystemStudio/phoebus/issues/3556))
+  - Build docs for all tagged releases on ReadTheDocs
+  - Default to `stable` (latest release) instead of `latest` (master)
+  - Enable version selector for older releases
+- [ ] **Documentation Standardization Across Repositories**
+  - Consistent documentation structure across Phoebus, Olog, ChannelFinder, Archive Appliance, etc.
+  - Standardize section organization (Getting Started, Installation, Configuration, API Reference, etc.)
+  - Common tooling: Sphinx vs MkDocs vs other static site generators
+  - Auto-generated documentation consistency (JavaDoc, OpenAPI/Swagger, Sphinx autodoc)
+  - Shared documentation templates and style guides
+  - Cross-repository linking strategy
+  - Hosting strategy (ReadTheDocs vs GitHub Pages vs self-hosted)
+
 ---
 
 ### 5. Security & Deployment

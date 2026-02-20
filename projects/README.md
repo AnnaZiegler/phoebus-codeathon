@@ -22,6 +22,7 @@ This directory contains the list of development projects for the Phoebus tools a
 | [PHOEBUS-UI-002](#phoebus-ui-002-data-browser-archive-data-source-management) | Data Browser Archive Data Source Management | Intermediate | | Not Started |
 | [PHOEBUS-UI-003](#phoebus-ui-003-fix-pv-resource-leak-in-widgetruntime) | Fix PV Resource Leak in WidgetRuntime | Beginner | | Not Started |
 | [PHOEBUS-UI-004](#phoebus-ui-004-interactive-graph-widget-for-xyplot) | Interactive Graph Widget for XYPlot | Advanced | | Not Started |
+| [PHOEBUS-UI-005](#phoebus-ui-005-default-email-address-preferences) | Default Email Address Preferences | Beginner | | Not Started |
 | [PHOEBUS-LINT-001](#phoebus-lint-001-display-builder-screen-linter) | Display Builder Screen Linter | Beginner | | Not Started |
 | **Middle Layer Services** |||||
 | [SERVICES-HEALTH-001](#services-health-001-standardize-health-endpoint-implementation) | Standardize Health Endpoint Implementation | Intermediate | | Not Started |
@@ -303,6 +304,27 @@ Add interactive editing capability to XYPlot graphs, allowing users to drag poin
 
 **Resources:**
 - GitHub Issue: https://github.com/ControlSystemStudio/phoebus/issues/3167
+
+**Assigned To:** _Available_
+
+---
+
+### PHOEBUS-UI-005: Default Email Address Preferences
+
+**Repository:** https://github.com/ControlSystemStudio/phoebus  
+**Difficulty:** Beginner  
+**Skills Required:** Java, Phoebus Preferences API  
+
+**Description:**  
+Add preferences for default email addresses in the Phoebus send email dialog. Currently only the "from" address can be configured; add "to" address default and support username macro expansion.
+
+- Add `default_to` preference for email recipient
+- Support `$(USERNAME)@site.tld` macro in "from" field to auto-populate sender
+- Ensure backwards compatibility with existing email preferences
+- Update email dialog to use configured defaults
+
+**Resources:**
+- GitHub Issue: https://github.com/ControlSystemStudio/phoebus/issues/3589
 
 **Assigned To:** _Available_
 
