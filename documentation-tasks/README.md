@@ -5,17 +5,6 @@ Documentation is a critical part of making Phoebus tools and services accessible
 
 ---
 
-## Documentation Categories
-
-1. [Documentation Structure Standardization](#documentation-structure-standardization)
-2. [User Documentation](#user-documentation)
-3. [Developer Documentation](#developer-documentation)
-4. [Installation & Deployment Guides](#installation--deployment-guides)
-5. [API Documentation](#api-documentation)
-6. [Tutorials & Examples](#tutorials--examples)
-
----
-
 ## Documentation Workflow
 
 1. Choose a task from the list below
@@ -185,38 +174,22 @@ Phoebus.org serves as the main landing page for the Phoebus ecosystem but has ou
   - Update broken or outdated links
   - Ensure links point to correct ReadTheDocs documentation
   - Add links to all ecosystem services (ChannelFinder, Olog, Save & Restore, Alarm Services, Archiver Appliance)
-  - Link to community resources (Matrix chat, mailing lists, GitHub Discussions)
+  - Fix links to community resources (Matrix chat, mailing lists, GitHub Discussions)
 - [ ] **Add Missing Information**:
   - Complete service descriptions for all middleware services
   - Add "Getting Started" quickstart guide
   - Include architecture overview diagram showing how services interact
-  - Add deployment options overview (bare metal, containers, cloud)
   - List key features and capabilities
-  - Add FAQ section for common questions
 - [ ] **Expand Collaboration Section**:
   - Highlight community contribution opportunities
   - Add "How to Contribute" section with clear paths for different skill levels
   - Showcase community contributors and facilities using Phoebus
   - Add community calendar (codeathons, meetings, webinars)
   - Link to CONTRIBUTING.md in main repository
-  - Add code of conduct
   - Include community communication channels (Matrix, GitHub, mailing lists)
-  - Feature community success stories and case studies
-- [ ] **Improve Site Organization**:
-  - Clear navigation: About, Documentation, Services, Community, Download, Support
-  - Separate pages for different audiences (users, developers, administrators)
-  - Add search functionality
-  - Responsive design for mobile/tablet
 - [ ] **Technical Updates**:
-  - Update site generator dependencies
-  - Improve build process and deployment
+  - Update site generator dependencies and Improve build process and deployment
   - Add analytics to understand user engagement
-
-**Deliverables:**
-- Updated Phoebus.org website with current links and information
-- Enhanced community collaboration section
-- Improved site structure and navigation
-- Documentation for site maintainers
 
 **Reference:**
 - Current site: https://phoebus.org (or phoebus-doc.readthedocs.io)
