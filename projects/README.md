@@ -24,6 +24,8 @@ This directory contains the list of development projects for the Phoebus tools a
 | [PHOEBUS-UI-004](#phoebus-ui-004-interactive-graph-widget-for-xyplot) | Interactive Graph Widget for XYPlot | Advanced | | Not Started |
 | [PHOEBUS-UI-005](#phoebus-ui-005-default-email-address-preferences) | Default Email Address Preferences | Beginner | | Not Started |
 | [PHOEBUS-UI-006](#phoebus-ui-006-remove-hardcoded-colors-for-css-consistency) | Remove Hardcoded Colors for Consistency | Intermediate | | Not Started |
+| [PHOEBUS-UI-007](#phoebus-ui-007-textentry-widget-autocomplete-suggestions) | TextEntry Widget Autocomplete Suggestions | Beginner | | Not Started |
+| [PHOEBUS-UI-008](#phoebus-ui-008-modernize-switch-statements-with-jdk-21-patterns) | Modernize Switch Statements with JDK 21 Patterns | Beginner | | Not Started |
 | [PHOEBUS-LINT-001](#phoebus-lint-001-display-builder-screen-linter) | Display Builder Screen Linter | Beginner | | Not Started |
 | **Middle Layer Services** |||||
 | [SERVICES-HEALTH-001](#services-health-001-standardize-health-endpoint-implementation) | Standardize Health Endpoint Implementation | Intermediate | | Not Started |
@@ -354,6 +356,51 @@ Refactor hardcoded color values throughout Phoebus to use a central ColorService
 - Logbook FXML styles: `app/logbook/olog/ui/src/main/resources/org/phoebus/logbook/olog/ui/LogEntryTableView.fxml#L43`
 - Queue Server FXML styles: `app/queue-server/src/main/resources/org/phoebus/applications/queueserver/view/ReStatusMonitor.fxml#L13`
 - NamedWidgetColors: `app/display/model/src/main/java/org/csstudio/display/builder/model/persist/NamedWidgetColors.java`
+
+**Assigned To:** _Available_
+
+---
+
+### PHOEBUS-UI-007: TextEntry Widget Autocomplete Suggestions
+
+**Repository:** https://github.com/ControlSystemStudio/phoebus  
+**Difficulty:** Beginner  
+**Skills Required:** Java, JavaFX, Display Builder  
+
+**Description:**  
+Review and merge PR 3541 which adds autocomplete/suggestion functionality to the TextEntry widget. Small code review task to verify implementation and documentation.
+
+- Test autocomplete functionality with different search algorithms (startswith, fuzzy, contains)
+- Verify option to allow/disallow values outside the suggestion list
+- Check that PV is only written on Enter key or suggestion selection
+- Review updated TextEntry demo display (controls_textentry.bob)
+
+**Resources:**
+- GitHub PR: https://github.com/ControlSystemStudio/phoebus/pull/3541
+- TextEntry demo: `app/display/model/src/main/resources/examples/controls_textentry.bob`
+
+**Assigned To:** _Available_
+
+---
+
+### PHOEBUS-UI-008: Modernize Switch Statements with JDK 21 Patterns
+
+**Repository:** https://github.com/ControlSystemStudio/phoebus  
+**Difficulty:** Beginner  
+**Skills Required:** Java 21, Pattern Matching  
+
+**Description:**  
+Refactor legacy switch statements throughout Phoebus codebase to use JDK 21 modern switch expressions and pattern matching. Improve code readability and take advantage of exhaustiveness checking.
+
+- Identify switch statements that can benefit from JDK 21 pattern matching
+- Convert traditional switch statements to switch expressions where appropriate
+- Use pattern matching for instanceof checks in switch cases
+- Ensure exhaustiveness checking is leveraged
+- Add tests to verify behavior remains unchanged
+
+**Resources:**
+- JDK 21 Pattern Matching: https://openjdk.org/jeps/441
+- Switch Pattern Matching: https://docs.oracle.com/en/java/javase/21/language/pattern-matching.html
 
 **Assigned To:** _Available_
 
