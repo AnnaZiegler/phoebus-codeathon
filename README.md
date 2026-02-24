@@ -5,6 +5,8 @@
 **Dates:** February 23-27, 2026  
 **Pre-Codeathon Session:** Monday, February 23rd
 
+**Meeting Minutes:** https://docs.google.com/document/d/10oipk7mUnPIMryraRGQpPgFCsdGvfIuPCNlf4ueU-sc/edit?usp=sharing
+
 ---
 
 ## Overview
