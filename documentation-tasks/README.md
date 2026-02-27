@@ -183,12 +183,14 @@ Phoebus.org serves as the main landing page for the Phoebus ecosystem but has ou
   - Include architecture overview diagram showing how services interact :question:
   - List key features and capabilities :question:
 - [ ] **Expand Collaboration Section**:
-  - Highlight community contribution opportunities
-  - Add "How to Contribute" section with clear paths for different skill levels
-  - Showcase community contributors and facilities using Phoebus
-  - Add community calendar (codeathons, meetings, webinars)
-  - Link to CONTRIBUTING.md in main repository
-  - Include community communication channels (Matrix, GitHub, mailing lists)
+  - Highlight community contribution opportunities :white_check_mark:
+  - Include community communication channels (Matrix, GitHub, mailing lists) :white_check_mark:
+  - ~~Add community calendar (codeathons, meetings, webinars)~~ Add a list of upcoming events instead :white_check_mark:
+  - Contribute overhaul :white_check_mark:
+  - ~~Showcase~~ Add missing community contributors and facilities using Phoebus
+  - Create and Link to CONTRIBUTING.md in main repository
+    https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/setting-guidelines-for-repository-contributors
+  - ~~Add "How to Contribute" section with clear paths for different skill levels~~ not needed, makes it less complicated
 - [ ] **Technical Updates**:
   - Update site generator dependencies and Improve build process and deployment
   - Add analytics to understand user engagement
