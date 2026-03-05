@@ -182,13 +182,13 @@ Phoebus.org serves as the main landing page for the Phoebus ecosystem but has ou
   - Download - Add "Getting Started" quickstart guide, under the Download section, add some useful links :white_check_mark:
   - Include architecture overview diagram showing how services interact :question:
   - List key features and capabilities :question:
-- [ ] **Expand Collaboration Section**:
+- [x] **Expand Collaboration Section**:
   - Highlight community contribution opportunities :white_check_mark:
   - Include community communication channels (Matrix, GitHub, mailing lists) :white_check_mark:
   - ~~Add community calendar (codeathons, meetings, webinars)~~ Add a list of upcoming events instead :white_check_mark:
   - Contribute overhaul :white_check_mark:
-  - ~~Showcase~~ Add missing community contributors and facilities using Phoebus
-  - Create and Link to CONTRIBUTING.md in main repository
+  - ~~Showcase~~ Add missing community contributors and facilities using Phoebus :white_check_mark:
+  - Create and Link to CONTRIBUTING.md in main repository :white_check_mark:
     https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/setting-guidelines-for-repository-contributors
   - ~~Add "How to Contribute" section with clear paths for different skill levels~~ not needed, makes it less complicated
 - [ ] **Technical Updates**:
@@ -200,7 +200,7 @@ Phoebus.org serves as the main landing page for the Phoebus ecosystem but has ou
 - Discussion topic: [4.4 Documentation Strategy](discussion-topics/README.md#44-documentation-strategy)
 
 **Assigned To:**
-Anna
+
 ---
 
 ## User Documentation
